@@ -1,0 +1,79 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
+
+.SH NAME
+.PP
+docker\-tag \- Tag an image into a repository
+
+.SH SYNOPSIS
+.PP
+\fBdocker tag\fP
+[\fB\-f\fP|\fB\-\-force\fP[=\fIfalse\fP]]
+ IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
+
+.SH DESCRIPTION
+.PP
+This will give a new alias to an image in the repository. This refers to the
+entire image name including the optional TAG after the ':'.
+
+.SH "OPTIONS"
+.PP
+\fB\-f\fP, \fB\-\-force\fP=\fItrue\fP|\fIfalse\fP
+   When set to true, force the alias. The default is \fIfalse\fP.
+
+.PP
+\fBREGISTRYHOST\fP
+   The hostname of the registry if required. This may also include the port
+separated by a ':'
+
+.PP
+\fBUSERNAME\fP
+   The username or other qualifying identifier for the image.
+
+.PP
+\fBNAME\fP
+   The image name.
+
+.PP
+\fBTAG\fP
+   The tag you are assigning to the image.  Though this is arbitrary it is
+recommended to be used for a version to distinguish images with the same name.
+Note that here TAG is a part of the overall name or "tag".
+
+.SH OPTIONS
+.PP
+\fB\-f\fP, \fB\-\-force\fP=\fItrue\fP|\fIfalse\fP
+   Force. The default is \fIfalse\fP.
+
+.SH EXAMPLES.SH Giving an image a new alias
+.PP
+Here is an example of aliasing an image (e.g., 0e5574283393) as "httpd" and
+tagging it into the "fedora" repository with "version1.0":
+
+.PP
+.RS
+
+.nf
+docker tag 0e5574283393 fedora/httpd:version1.0
+
+.fi
+.SH Tagging an image for a private repository
+.PP
+To push an image to an private registry and not the central Docker
+registry you must tag it with the registry hostname and port (if needed).
+
+.PP
+.RS
+
+.nf
+docker tag 0e5574283393 myregistryhost:5000/fedora/httpd:version1.0
+
+.fi
+
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot com)
+based on docker.com source material and internal work.
+June 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]
+July 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]

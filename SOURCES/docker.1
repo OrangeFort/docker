@@ -1,0 +1,255 @@
+.TH "DOCKER" "1" " Docker User Manuals" "William Henry" "APRIL 2014"  ""
+
+.SH NAME
+.PP
+docker \- Docker image and container command line interface
+
+.SH SYNOPSIS
+.PP
+\fBdocker\fP [OPTIONS] COMMAND [arg...]
+
+.SH DESCRIPTION
+.PP
+\fBdocker\fP has two distinct functions. It is used for starting the Docker
+daemon and to run the CLI (i.e., to command the daemon to manage images,
+containers etc.) So \fBdocker\fP is both a server, as a daemon, and a client
+to the daemon, through the CLI.
+
+.PP
+To run the Docker daemon you do not specify any of the commands listed below but
+must specify the \fB\-d\fP option.  The other options listed below are for the
+daemon only.
+
+.PP
+The Docker CLI has over 30 commands. The commands are listed below and each has
+its own man page which explain usage and arguments.
+
+.PP
+To see the man page for a command run \fBman docker \fP.
+
+.SH OPTIONS
+.PP
+\fB\-D\fP=\fItrue\fP|\fIfalse\fP
+   Enable debug mode. Default is false.
+
+.PP
+\fB\-H\fP, \fB\-\-host\fP=[unix:///var/run/docker.sock]: tcp://[host:port] to bind or
+unix://[/path/to/socket] to use.
+   The socket(s) to bind to in daemon mode specified using one or more
+   tcp://host:port, unix:///path/to/socket, fd://* or fd://socketfd.
+
+.PP
+\fB\-\-api\-enable\-cors\fP=\fItrue\fP|\fIfalse\fP
+  Enable CORS headers in the remote API. Default is false.
+
+.PP
+\fB\-b\fP=""
+  Attach containers to a pre\-existing network bridge; use 'none' to disable container networking
+
+.PP
+\fB\-\-bip\fP=""
+  Use the provided CIDR notation address for the dynamically created bridge (docker0); Mutually exclusive of \-b
+
+.PP
+\fB\-d\fP=\fItrue\fP|\fIfalse\fP
+  Enable daemon mode. Default is false.
+
+.PP
+\fB\-\-dns\fP=""
+  Force Docker to use specific DNS servers
+
+.PP
+\fB\-g\fP=""
+  Path to use as the root of the Docker runtime. Default is \fB\fC/var/lib/docker\fR.
+
+.PP
+\fB\-\-icc\fP=\fItrue\fP|\fIfalse\fP
+  Enable inter\-container communication. Default is true.
+
+.PP
+\fB\-\-ip\fP=""
+  Default IP address to use when binding container ports. Default is \fB\fC0.0.0.0\fR.
+
+.PP
+\fB\-\-iptables\fP=\fItrue\fP|\fIfalse\fP
+  Disable Docker's addition of iptables rules. Default is true.
+
+.PP
+\fB\-\-mtu\fP=VALUE
+  Set the containers network mtu. Default is \fB\fC1500\fR.
+
+.PP
+\fB\-p\fP=""
+  Path to use for daemon PID file. Default is \fB\fC/var/run/docker.pid\fR
+
+.PP
+\fB\-s\fP=""
+  Force the Docker runtime to use a specific storage driver.
+
+.PP
+\fB\-v\fP=\fItrue\fP|\fIfalse\fP
+  Print version information and quit. Default is false.
+
+.PP
+\fB\-\-selinux\-enabled\fP=\fItrue\fP|\fIfalse\fP
+  Enable selinux support. Default is false. SELinux does not presently support the BTRFS storage driver.
+
+.SH COMMANDS
+.PP
+\fBdocker\-attach(1)\fP
+  Attach to a running container
+
+.PP
+\fBdocker\-build(1)\fP
+  Build an image from a Dockerfile
+
+.PP
+\fBdocker\-commit(1)\fP
+  Create a new image from a container's changes
+
+.PP
+\fBdocker\-cp(1)\fP
+  Copy files/folders from a container's filesystem to the host at path
+
+.PP
+\fBdocker\-diff(1)\fP
+  Inspect changes on a container's filesystem
+
+.PP
+\fBdocker\-events(1)\fP
+  Get real time events from the server
+
+.PP
+\fBdocker\-export(1)\fP
+  Stream the contents of a container as a tar archive
+
+.PP
+\fBdocker\-history(1)\fP
+  Show the history of an image
+
+.PP
+\fBdocker\-images(1)\fP
+  List images
+
+.PP
+\fBdocker\-import(1)\fP
+  Create a new filesystem image from the contents of a tarball
+
+.PP
+\fBdocker\-info(1)\fP
+  Display system\-wide information
+
+.PP
+\fBdocker\-inspect(1)\fP
+  Return low\-level information on a container
+
+.PP
+\fBdocker\-kill(1)\fP
+  Kill a running container (which includes the wrapper process and everything
+inside it)
+
+.PP
+\fBdocker\-load(1)\fP
+  Load an image from a tar archive
+
+.PP
+\fBdocker\-login(1)\fP
+  Register or Login to a Docker registry server
+
+.PP
+\fBdocker\-logout(1)\fP
+  Log the user out of a Docker registry server
+
+.PP
+\fBdocker\-logs(1)\fP
+  Fetch the logs of a container
+
+.PP
+\fBdocker\-pause(1)\fP
+  Pause all processes within a container
+
+.PP
+\fBdocker\-port(1)\fP
+  Lookup the public\-facing port which is NAT\-ed to PRIVATE\_PORT
+
+.PP
+\fBdocker\-ps(1)\fP
+  List containers
+
+.PP
+\fBdocker\-pull(1)\fP
+  Pull an image or a repository from a Docker registry server
+
+.PP
+\fBdocker\-push(1)\fP
+  Push an image or a repository to a Docker registry server
+
+.PP
+\fBdocker\-restart(1)\fP
+  Restart a running container
+
+.PP
+\fBdocker\-rm(1)\fP
+  Remove one or more containers
+
+.PP
+\fBdocker\-rmi(1)\fP
+  Remove one or more images
+
+.PP
+\fBdocker\-run(1)\fP
+  Run a command in a new container
+
+.PP
+\fBdocker\-save(1)\fP
+  Save an image to a tar archive
+
+.PP
+\fBdocker\-search(1)\fP
+  Search for an image in the Docker index
+
+.PP
+\fBdocker\-start(1)\fP
+  Start a stopped container
+
+.PP
+\fBdocker\-stop(1)\fP
+  Stop a running container
+
+.PP
+\fBdocker\-tag(1)\fP
+  Tag an image into a repository
+
+.PP
+\fBdocker\-top(1)\fP
+  Lookup the running processes of a container
+
+.PP
+\fBdocker\-unpause(1)\fP
+  Unpause all processes within a container
+
+.PP
+\fBdocker\-version(1)\fP
+  Show the Docker version information
+
+.PP
+\fBdocker\-wait(1)\fP
+  Block until a container stops, then print its exit code
+
+.SH EXAMPLES
+.PP
+For specific examples please see the man page for the specific Docker command.
+For example:
+
+.PP
+.RS
+
+.nf
+man docker run
+
+.fi
+
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot com) based
+ on docker.com source material and internal work.

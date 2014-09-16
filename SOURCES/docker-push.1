@@ -1,0 +1,75 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
+
+.SH NAME
+.PP
+docker\-push \- Push an image or a repository to the registry
+
+.SH SYNOPSIS
+.PP
+\fBdocker push\fP
+NAME[:TAG]
+
+.SH DESCRIPTION
+.PP
+Push an image or a repository to a registry. The default registry is the Docker
+Hub located at 
+\[la]https://hub.docker.com/\[ra]. However the
+image can be pushed to another, perhaps private, registry as demonstrated in
+the example below.
+
+.SH OPTIONS
+.PP
+There are no available options.
+
+.SH EXAMPLES
+.SH Pushing a new image to a registry
+.PP
+First save the new image by finding the container ID (using \fBdocker ps\fP)
+and then committing it to a new image name:
+
+.PP
+.RS
+
+.nf
+# docker commit c16378f943fe rhel\-httpd
+
+.fi
+
+.PP
+Now push the image to the registry using the image ID. In this example
+the registry is on host named registry\-host and listening on port 5000.
+Default Docker commands will push to the default \fB\fChub.docker.com\fR
+registry. Instead, push to the local registry, which is on a host called
+registry\-host*. To do this, tag the image with the host name or IP
+address, and the port of the registry:
+
+.PP
+.RS
+
+.nf
+# docker tag rhel\-httpd registry\-host:5000/myadmin/rhel\-httpd
+# docker push registry\-host:5000/myadmin/rhel\-httpd
+
+.fi
+
+.PP
+Check that this worked by running:
+
+.PP
+.RS
+
+.nf
+# docker images
+
+.fi
+
+.PP
+You should see both \fB\fCrhel\-httpd\fR and \fB\fCregistry\-host:5000/myadmin/rhel\-httpd\fR
+listed.
+
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot com)
+based on docker.com source material and internal work.
+June 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]

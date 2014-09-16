@@ -1,0 +1,65 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
+
+.SH NAME
+.PP
+docker\-import \- Create an empty filesystem image and import the contents of the tarball (.tar, .tar.gz, .tgz, .bzip, .tar.xz, .txz) into it, then optionally tag it.
+
+.SH SYNOPSIS
+.PP
+\fBdocker import\fP
+URL|\- [REPOSITORY[:TAG]]
+
+.SH DESCRIPTION
+.PP
+Create a new filesystem image from the contents of a tarball (\fB\fC.tar\fR,
+\fB\fC.tar.gz\fR, \fB\fC.tgz\fR, \fB\fC.bzip\fR, \fB\fC.tar.xz\fR, \fB\fC.txz\fR) into it, then optionally tag it.
+
+.SH OPTIONS
+.PP
+There are no available options.
+
+.SH EXAMPLES.SH Import from a remote location
+.PP
+.RS
+
+.nf
+# docker import http://example.com/exampleimage.tgz example/imagerepo
+
+.fi
+.SH Import from a local file
+.PP
+Import to docker via pipe and stdin:
+
+.PP
+.RS
+
+.nf
+# cat exampleimage.tgz | docker import \- example/imagelocal
+
+.fi
+.SH Import from a local file and tag
+.PP
+Import to docker via pipe and stdin:
+
+.PP
+.RS
+
+.nf
+# cat exampleimageV2.tgz | docker import \- example/imagelocal:V\-2.0
+
+.fi
+.SH Import from a local directory
+.PP
+.RS
+
+.nf
+# tar \-c . | docker import \- exampleimagedir
+
+.fi
+
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot com)
+based on docker.com source material and internal work.
+June 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]

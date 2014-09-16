@@ -1,0 +1,55 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
+
+.SH NAME
+.PP
+docker\-commit \- Create a new image from a container's changes
+
+.SH SYNOPSIS
+.PP
+\fBdocker commit\fP
+[\fB\-a\fP|\fB\-\-author\fP[=\fIAUTHOR\fP]]
+[\fB\-m\fP|\fB\-\-message\fP[=\fIMESSAGE\fP]]
+[\fB\-p\fP|\fB\-\-pause\fP[=\fItrue\fP]]
+ CONTAINER [REPOSITORY[:TAG]]
+
+.SH DESCRIPTION
+.PP
+Using an existing container's name or ID you can create a new image.
+
+.SH OPTIONS
+.PP
+\fB\-a\fP, \fB\-\-author\fP=""
+   Author (e.g., "John Hannibal Smith 
+\[la]hannibal@a-team.com\[ra]")
+
+.PP
+\fB\-m\fP, \fB\-\-message\fP=""
+   Commit message
+
+.PP
+\fB\-p\fP, \fB\-\-pause\fP=\fItrue\fP|\fIfalse\fP
+   Pause container during commit. The default is \fItrue\fP.
+
+.SH EXAMPLES.SH Creating a new image from an existing container
+.PP
+An existing Fedora based container has had Apache installed while running
+in interactive mode with the bash shell. Apache is also running. To
+create a new image run docker ps to find the container's ID and then run:
+
+.PP
+.RS
+
+.nf
+# docker commit \-m="Added Apache to Fedora base image" \\
+  \-a="A D Ministrator" 98bd7fc99854 fedora/fedora\_httpd:20
+
+.fi
+
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot com)
+based on docker.com source material and in
+June 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]
+July 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]

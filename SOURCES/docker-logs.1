@@ -1,0 +1,47 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
+
+.SH NAME
+.PP
+docker\-logs \- Fetch the logs of a container
+
+.SH SYNOPSIS
+.PP
+\fBdocker logs\fP
+[\fB\-f\fP|\fB\-\-follow\fP[=\fIfalse\fP]]
+[\fB\-t\fP|\fB\-\-timestamps\fP[=\fIfalse\fP]]
+[\fB\-\-tail\fP[=\fI"all"\fP]]
+CONTAINER
+
+.SH DESCRIPTION
+.PP
+The \fBdocker logs\fP command batch\-retrieves whatever logs are present for
+a container at the time of execution. This does not guarantee execution
+order when combined with a docker run (i.e. your run may not have generated
+any logs at the time you execute docker logs).
+
+.PP
+The \fBdocker logs \-\-follow\fP command combines commands \fBdocker logs\fP and
+\fBdocker attach\fP. It will first return all logs from the beginning and
+then continue streaming new output from the container’s stdout and stderr.
+
+.SH OPTIONS
+.PP
+\fB\-f\fP, \fB\-\-follow\fP=\fItrue\fP|\fIfalse\fP
+   Follow log output. The default is \fIfalse\fP.
+
+.PP
+\fB\-t\fP, \fB\-\-timestamps\fP=\fItrue\fP|\fIfalse\fP
+   Show timestamps. The default is \fIfalse\fP.
+
+.PP
+\fB\-\-tail\fP="all"
+   Output the specified number of lines at the end of logs (defaults to all logs)
+
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot com)
+based on docker.com source material and internal work.
+June 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]
+July 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]

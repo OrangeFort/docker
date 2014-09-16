@@ -1,0 +1,50 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
+
+.SH NAME
+.PP
+docker\-login \- Register or log in to a Docker registry server, if no server is specified "
+\[la]https://index.docker.io/v1/"\[ra] is the default.
+
+.SH SYNOPSIS
+.PP
+\fBdocker login\fP
+[\fB\-e\fP|\fB\-\-email\fP[=\fIEMAIL\fP]]
+[\fB\-p\fP|\fB\-\-password\fP[=\fIPASSWORD\fP]]
+[\fB\-u\fP|\fB\-\-username\fP[=\fIUSERNAME\fP]]
+ [SERVER]
+
+.SH DESCRIPTION
+.PP
+Register or Login to a docker registry server, if no server is
+specified "
+\[la]https://index.docker.io/v1/"\[ra] is the default. If you want to
+login to a private registry you can specify this by adding the server name.
+
+.SH OPTIONS
+.PP
+\fB\-e\fP, \fB\-\-email\fP=""
+   Email
+
+.PP
+\fB\-p\fP, \fB\-\-password\fP=""
+   Password
+
+.PP
+\fB\-u\fP, \fB\-\-username\fP=""
+   Username
+
+.SH EXAMPLES.SH Login to a local registry
+.PP
+.RS
+
+.nf
+# docker login localhost:8080
+
+.fi
+
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot com)
+based on docker.com source material and internal work.
+June 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]
