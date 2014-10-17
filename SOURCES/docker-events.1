@@ -15,6 +15,28 @@ docker\-events \- Get real time events from the server
 Get event information from the Docker daemon. Information can include historical
 information and real\-time information.
 
+.PP
+Docker containers will report the following events:
+
+.PP
+.RS
+
+.nf
+create, destroy, die, export, kill, pause, restart, start, stop, unpause
+
+.fi
+
+.PP
+and Docker images will report:
+
+.PP
+.RS
+
+.nf
+untag, delete
+
+.fi
+
 .SH OPTIONS
 .PP
 \fB\-\-since\fP=""

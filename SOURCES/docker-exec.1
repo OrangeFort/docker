@@ -1,0 +1,32 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "SEPT 2014"  ""
+
+.SH NAME
+.PP
+docker\-exec \- Run a command in a running container
+
+.SH SYNOPSIS
+.PP
+\fBdocker exec\fP
+[\fB\-d\fP|\fB\-\-detach\fP[=\fIfalse\fP]]
+[\fB\-i\fP|\fB\-\-interactive\fP[=\fIfalse\fP]]
+[\fB\-t\fP|\fB\-\-tty\fP[=\fIfalse\fP]]
+ CONTAINER COMMAND [ARG...]
+
+.SH DESCRIPTION
+.PP
+Run a process in a running container.
+
+.SH Options
+.PP
+\fB\-d\fP, \fB\-\-detach\fP=\fItrue\fP|\fIfalse\fP
+   Detached mode. This runs the new process in the background.
+
+.PP
+\fB\-i\fP, \fB\-\-interactive\fP=\fItrue\fP|\fIfalse\fP
+   When set to true, keep STDIN open even if not attached. The default is false.
+
+.PP
+\fB\-t\fP, \fB\-\-tty\fP=\fItrue\fP|\fIfalse\fP
+   When set to true Docker can allocate a pseudo\-tty and attach to the standard
+input of the process. This can be used, for example, to run a throwaway
+interactive shell. The default value is false.

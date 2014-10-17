@@ -1,0 +1,174 @@
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
+
+.SH NAME
+.PP
+docker\-create \- Create a new container
+
+.SH SYNOPSIS
+.PP
+\fBdocker create\fP
+[\fB\-a\fP|\fB\-\-attach\fP[=\fI[]\fP]]
+[\fB\-\-add\-host\fP[=\fI[]\fP]]
+[\fB\-c\fP|\fB\-\-cpu\-shares\fP[=\fI0\fP]]
+[\fB\-\-cap\-add\fP[=\fI[]\fP]]
+[\fB\-\-cap\-drop\fP[=\fI[]\fP]]
+[\fB\-\-cidfile\fP[=\fICIDFILE\fP]]
+[\fB\-\-cpuset\fP[=\fICPUSET\fP]]
+[\fB\-\-device\fP[=\fI[]\fP]]
+[\fB\-\-dns\-search\fP[=\fI[]\fP]]
+[\fB\-\-dns\fP[=\fI[]\fP]]
+[\fB\-e\fP|\fB\-\-env\fP[=\fI[]\fP]]
+[\fB\-\-entrypoint\fP[=\fIENTRYPOINT\fP]]
+[\fB\-\-env\-file\fP[=\fI[]\fP]]
+[\fB\-\-expose\fP[=\fI[]\fP]]
+[\fB\-h\fP|\fB\-\-hostname\fP[=\fIHOSTNAME\fP]]
+[\fB\-i\fP|\fB\-\-interactive\fP[=\fIfalse\fP]]
+[\fB\-\-link\fP[=\fI[]\fP]]
+[\fB\-\-lxc\-conf\fP[=\fI[]\fP]]
+[\fB\-m\fP|\fB\-\-memory\fP[=\fIMEMORY\fP]]
+[\fB\-\-name\fP[=\fINAME\fP]]
+[\fB\-\-net\fP[=\fI"bridge"\fP]]
+[\fB\-P\fP|\fB\-\-publish\-all\fP[=\fIfalse\fP]]
+[\fB\-p\fP|\fB\-\-publish\fP[=\fI[]\fP]]
+[\fB\-\-privileged\fP[=\fIfalse\fP]]
+[\fB\-\-restart\fP[=\fIRESTART\fP]]
+[\fB\-t\fP|\fB\-\-tty\fP[=\fIfalse\fP]]
+[\fB\-u\fP|\fB\-\-user\fP[=\fIUSER\fP]]
+[\fB\-v\fP|\fB\-\-volume\fP[=\fI[]\fP]]
+[\fB\-\-volumes\-from\fP[=\fI[]\fP]]
+[\fB\-w\fP|\fB\-\-workdir\fP[=\fIWORKDIR\fP]]
+ IMAGE [COMMAND] [ARG...]
+
+.SH OPTIONS
+.PP
+\fB\-a\fP, \fB\-\-attach\fP=[]
+   Attach to STDIN, STDOUT or STDERR.
+
+.PP
+\fB\-\-add\-host\fP=[]
+   Add a custom host\-to\-IP mapping (host:ip)
+
+.PP
+\fB\-c\fP, \fB\-\-cpu\-shares\fP=0
+   CPU shares (relative weight)
+
+.PP
+\fB\-\-cap\-add\fP=[]
+   Add Linux capabilities
+
+.PP
+\fB\-\-cap\-drop\fP=[]
+   Drop Linux capabilities
+
+.PP
+\fB\-\-cidfile\fP=""
+   Write the container ID to the file
+
+.PP
+\fB\-\-cpuset\fP=""
+   CPUs in which to allow execution (0\-3, 0,1)
+
+.PP
+\fB\-\-device\fP=[]
+   Add a host device to the container (e.g. \-\-device=/dev/sdc:/dev/xvdc:rwm)
+
+.PP
+\fB\-\-dns\-search\fP=[]
+   Set custom DNS search domains
+
+.PP
+\fB\-\-dns\fP=[]
+   Set custom DNS servers
+
+.PP
+\fB\-e\fP, \fB\-\-env\fP=[]
+   Set environment variables
+
+.PP
+\fB\-\-entrypoint\fP=""
+   Overwrite the default ENTRYPOINT of the image
+
+.PP
+\fB\-\-env\-file\fP=[]
+   Read in a line delimited file of environment variables
+
+.PP
+\fB\-\-expose\fP=[]
+   Expose a port from the container without publishing it to your host
+
+.PP
+\fB\-h\fP, \fB\-\-hostname\fP=""
+   Container host name
+
+.PP
+\fB\-i\fP, \fB\-\-interactive\fP=\fItrue\fP|\fIfalse\fP
+   Keep STDIN open even if not attached. The default is \fIfalse\fP.
+
+.PP
+\fB\-\-link\fP=[]
+   Add link to another container in the form of name:alias
+
+.PP
+\fB\-\-lxc\-conf\fP=[]
+   (lxc exec\-driver only) Add custom lxc options \-\-lxc\-conf="lxc.cgroup.cpuset.cpus = 0,1"
+
+.PP
+\fB\-m\fP, \fB\-\-memory\fP=""
+   Memory limit (format: , where unit = b, k, m or g)
+
+.PP
+\fB\-\-name\fP=""
+   Assign a name to the container
+
+.PP
+\fB\-\-net\fP="bridge"
+   Set the Network mode for the container
+                               'bridge': creates a new network stack for the container on the docker bridge
+                               'none': no networking for this container
+                               'container:': reuses another container network stack
+                               'host': use the host network stack inside the container.  Note: the host mode gives the container full access to local system services such as D\-bus and is therefore considered insecure.
+
+.PP
+\fB\-P\fP, \fB\-\-publish\-all\fP=\fItrue\fP|\fIfalse\fP
+   Publish all exposed ports to the host interfaces. The default is \fIfalse\fP.
+
+.PP
+\fB\-p\fP, \fB\-\-publish\fP=[]
+   Publish a container's port to the host
+                               format: ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort
+                               (use 'docker port' to see the actual mapping)
+
+.PP
+\fB\-\-privileged\fP=\fItrue\fP|\fIfalse\fP
+   Give extended privileges to this container. The default is \fIfalse\fP.
+
+.PP
+\fB\-\-restart\fP=""
+   Restart policy to apply when a container exits (no, on\-failure[:max\-retry], always)
+
+.PP
+\fB\-t\fP, \fB\-\-tty\fP=\fItrue\fP|\fIfalse\fP
+   Allocate a pseudo\-TTY. The default is \fIfalse\fP.
+
+.PP
+\fB\-u\fP, \fB\-\-user\fP=""
+   Username or UID
+
+.PP
+\fB\-v\fP, \fB\-\-volume\fP=[]
+   Bind mount a volume (e.g., from the host: \-v /host:/container, from Docker: \-v /container)
+
+.PP
+\fB\-\-volumes\-from\fP=[]
+   Mount volumes from the specified container(s)
+
+.PP
+\fB\-w\fP, \fB\-\-workdir\fP=""
+   Working directory inside the container
+
+.SH HISTORY
+.PP
+August 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]
+September 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]

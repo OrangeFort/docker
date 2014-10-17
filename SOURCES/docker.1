@@ -63,12 +63,20 @@ unix://[/path/to/socket] to use.
   Path to use as the root of the Docker runtime. Default is \fB\fC/var/lib/docker\fR.
 
 .PP
+\fB\-\-fixed\-cidr\fP=""
+  IPv4 subnet for fixed IPs (ex: 10.20.0.0/16); this subnet must be nested in the bridge subnet (which is defined by \-b or \-\-bip)
+
+.PP
 \fB\-\-icc\fP=\fItrue\fP|\fIfalse\fP
   Enable inter\-container communication. Default is true.
 
 .PP
 \fB\-\-ip\fP=""
   Default IP address to use when binding container ports. Default is \fB\fC0.0.0.0\fR.
+
+.PP
+\fB\-\-ip\-masq\fP=\fItrue\fP|\fIfalse\fP
+  Enable IP masquerading for bridge's IP range. Default is true.
 
 .PP
 \fB\-\-iptables\fP=\fItrue\fP|\fIfalse\fP
@@ -81,6 +89,10 @@ unix://[/path/to/socket] to use.
 .PP
 \fB\-p\fP=""
   Path to use for daemon PID file. Default is \fB\fC/var/run/docker.pid\fR
+
+.PP
+**\-\-registry\-mirror=://
+  Prepend a registry mirror to be used for image pulls. May be specified multiple times.
 
 .PP
 \fB\-s\fP=""
@@ -112,12 +124,20 @@ unix://[/path/to/socket] to use.
   Copy files/folders from a container's filesystem to the host at path
 
 .PP
+\fBdocker\-create(1)\fP
+  Create a new container
+
+.PP
 \fBdocker\-diff(1)\fP
   Inspect changes on a container's filesystem
 
 .PP
 \fBdocker\-events(1)\fP
   Get real time events from the server
+
+.PP
+\fBdocker\-exec(1)\fP
+  Run a command in a running container
 
 .PP
 \fBdocker\-export(1)\fP

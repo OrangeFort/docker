@@ -2,8 +2,8 @@
 %global debug_package %{nil}
 
 Name:           docker
-Version:        1.2.0
-Release:        3%{?repo}%{?dist}
+Version:        1.3.0
+Release:        1%{?repo}%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
 Group:          System Environment/Daemons
@@ -242,6 +242,9 @@ exit 0
 
 
 %changelog
+* Thu Oct 16 2014 Ryan McKern <ryan@orangefort.com> - 1.3.0-1orangefort.el7
+- Bump release to 1.3.0
+
 * Sun Sep 14 2014 Ryan McKern <ryan@orangefort.com> - 1.2.0-3orangefort.el7
 - Fix errant provides
 - Replace buildroot macro with RPM_BUILD_ROOT variable

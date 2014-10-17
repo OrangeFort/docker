@@ -104,7 +104,7 @@ or
   \fBFROM ubuntu\fP
   \fBCMD echo "This is a test." | wc \-\fP
   If you run  without a shell, then you must express the command as a
-  JSON arry and give the full path to the executable. This array form is the
+  JSON array and give the full path to the executable. This array form is the
   preferred form of CMD. All additional parameters must be individually expressed
   as strings in the array:
   \fBFROM ubuntu\fP
@@ -142,12 +142,14 @@ Note that setting Setting \fBENV DEBIAN\_FRONTEND noninteractive\fP may cause
 
 .PP
 \fBADD\fP
- \-\-\fBADD  \fP The ADD instruction copies new files from  and adds them
-  to the filesystem of the container at path .   must be the path to a
-  file or directory relative to the source directory that is being built (the
-  context of the build) or a remote file URL.   is the absolute path to
-  which the source is copied inside the target container.  All new files and
-  directories are created with mode 0755, with uid and gid 0.
+ \-\-\fBADD ... \fP The ADD instruction copies new files, directories
+ or remote file URLs to the filesystem of the container at path .
+.br
+ Mutliple  resources may be specified but if they are files or directories
+ then they must be relative to the source directory that is being built
+ (the context of the build).   is the absolute path to
+ which the source is copied inside the target container.  All new files and
+ directories are created with mode 0755, with uid and gid 0.
 
 .PP
 \fBENTRYPOINT\fP
@@ -192,7 +194,7 @@ Note that setting Setting \fBENV DEBIAN\_FRONTEND noninteractive\fP may cause
  \-\- \fBWORKDIR /path/to/workdir\fP
  The WORKDIR instruction sets the working directory for the \fBRUN\fP, \fBCMD\fP, and \fBENTRYPOINT\fP Dockerfile commands that follow it.
  It can be used multiple times in a single Dockerfile. Relative paths are defined relative to the path of the previous \fBWORKDIR\fP instruction. For example:
- \fBWORKDIR /a WORKDIR /b WORKDIR c RUN pwd\fP
+ \fBWORKDIR /a WORKDIR b WORKDIR c RUN pwd\fP
  In the above example, the output of the \fBpwd\fP command is \fBa/b/c\fP.
 
 .PP
