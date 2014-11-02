@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:           docker
-Version:        1.3.0
+Version:        1.3.1
 Release:        1%{?repo}%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
@@ -17,6 +17,7 @@ AutoReqProv:    0
 
 
 Requires:         iptables, procps, systemd, xz
+BuildRequires:    systemd
 Requires(post):   systemd
 Requires(preun):  systemd
 Requires(postun): systemd
@@ -242,6 +243,10 @@ exit 0
 
 
 %changelog
+* Sun Nov  2 2014 Ryan McKern <ryan@orangefort.com> - 1.3.1-1orangefort.el7
+- Bump release to 1.3.1
+- Add BuildRequires for SystemD to ensure that RPM macros are populated
+
 * Thu Oct 16 2014 Ryan McKern <ryan@orangefort.com> - 1.3.0-1orangefort.el7
 - Bump release to 1.3.0
 
