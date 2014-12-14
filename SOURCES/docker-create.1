@@ -23,21 +23,24 @@ docker\-create \- Create a new container
 [\fB\-\-expose\fP[=\fI[]\fP]]
 [\fB\-h\fP|\fB\-\-hostname\fP[=\fIHOSTNAME\fP]]
 [\fB\-i\fP|\fB\-\-interactive\fP[=\fIfalse\fP]]
+[\fB\-\-ipc\fP[=\fIIPC\fP]]
 [\fB\-\-link\fP[=\fI[]\fP]]
 [\fB\-\-lxc\-conf\fP[=\fI[]\fP]]
 [\fB\-m\fP|\fB\-\-memory\fP[=\fIMEMORY\fP]]
+[\fB\-\-mac\-address\fP[=\fIMAC\-ADDRESS\fP]]
 [\fB\-\-name\fP[=\fINAME\fP]]
 [\fB\-\-net\fP[=\fI"bridge"\fP]]
 [\fB\-P\fP|\fB\-\-publish\-all\fP[=\fIfalse\fP]]
 [\fB\-p\fP|\fB\-\-publish\fP[=\fI[]\fP]]
 [\fB\-\-privileged\fP[=\fIfalse\fP]]
 [\fB\-\-restart\fP[=\fIRESTART\fP]]
+[\fB\-\-security\-opt\fP[=\fI[]\fP]]
 [\fB\-t\fP|\fB\-\-tty\fP[=\fIfalse\fP]]
 [\fB\-u\fP|\fB\-\-user\fP[=\fIUSER\fP]]
 [\fB\-v\fP|\fB\-\-volume\fP[=\fI[]\fP]]
 [\fB\-\-volumes\-from\fP[=\fI[]\fP]]
 [\fB\-w\fP|\fB\-\-workdir\fP[=\fIWORKDIR\fP]]
- IMAGE [COMMAND] [ARG...]
+IMAGE [COMMAND] [ARG...]
 
 .SH OPTIONS
 .PP
@@ -70,11 +73,11 @@ docker\-create \- Create a new container
 
 .PP
 \fB\-\-device\fP=[]
-   Add a host device to the container (e.g. \-\-device=/dev/sdc:/dev/xvdc)
+   Add a host device to the container (e.g. \-\-device=/dev/sdc:/dev/xvdc:rwm)
 
 .PP
 \fB\-\-dns\-search\fP=[]
-   Set custom DNS search domains
+   Set custom DNS search domains (Use \-\-dns\-search=. if you don't wish to set the search domain)
 
 .PP
 \fB\-\-dns\fP=[]
@@ -94,7 +97,7 @@ docker\-create \- Create a new container
 
 .PP
 \fB\-\-expose\fP=[]
-   Expose a port from the container without publishing it to your host
+   Expose a port or a range of ports (e.g. \-\-expose=3300\-3310) from the container without publishing it to your host
 
 .PP
 \fB\-h\fP, \fB\-\-hostname\fP=""
@@ -103,6 +106,12 @@ docker\-create \- Create a new container
 .PP
 \fB\-i\fP, \fB\-\-interactive\fP=\fItrue\fP|\fIfalse\fP
    Keep STDIN open even if not attached. The default is \fIfalse\fP.
+
+.PP
+\fB\-\-ipc\fP=""
+   Default is to create a private IPC namespace (POSIX SysV IPC) for the container
+                               'container:': reuses another container shared memory, semaphores and message queues
+                               'host': use the host shared memory,semaphores and message queues inside the container.  Note: the host mode gives the container full access to local shared memory and is therefore considered insecure.
 
 .PP
 \fB\-\-link\fP=[]
@@ -115,6 +124,10 @@ docker\-create \- Create a new container
 .PP
 \fB\-m\fP, \fB\-\-memory\fP=""
    Memory limit (format: , where unit = b, k, m or g)
+
+.PP
+\fB\-\-mac\-address\fP=""
+   Container MAC address (e.g. 92:d0:c6:0a:29:33)
 
 .PP
 \fB\-\-name\fP=""
@@ -147,6 +160,10 @@ docker\-create \- Create a new container
    Restart policy to apply when a container exits (no, on\-failure[:max\-retry], always)
 
 .PP
+\fB\-\-security\-opt\fP=[]
+   Security Options
+
+.PP
 \fB\-t\fP, \fB\-\-tty\fP=\fItrue\fP|\fIfalse\fP
    Allocate a pseudo\-TTY. The default is \fIfalse\fP.
 
@@ -171,4 +188,6 @@ docker\-create \- Create a new container
 August 2014, updated by Sven Dowideit 
 \[la]SvenDowideit@home.org.au\[ra]
 September 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]
+November 2014, updated by Sven Dowideit 
 \[la]SvenDowideit@home.org.au\[ra]

@@ -11,7 +11,7 @@ docker\-images \- List images
 [\fB\-f\fP|\fB\-\-filter\fP[=\fI[]\fP]]
 [\fB\-\-no\-trunc\fP[=\fIfalse\fP]]
 [\fB\-q\fP|\fB\-\-quiet\fP[=\fIfalse\fP]]
- [NAME]
+[REPOSITORY]
 
 .SH DESCRIPTION
 .PP
@@ -75,36 +75,6 @@ used in builds use \fB\-a\fP:
 
 .nf
 docker images \-a
-
-.fi
-.SH List images dependency tree hierarchy
-.PP
-To list the images in the local repository (not the registry) in a dependency
-tree format, use the \fB\-t\fP option.
-
-.PP
-.RS
-
-.nf
-docker images \-t
-
-.fi
-
-.PP
-This displays a staggered hierarchy tree where the less indented image is
-the oldest with dependent image layers branching inward (to the right) on
-subsequent lines. The newest or top level image layer is listed last in
-any tree branch.
-.SH List images in GraphViz format
-.PP
-To display the list in a format consumable by a GraphViz tools run with
-\fB\-v\fP. For example to produce a .png graph file of the hierarchy use:
-
-.PP
-.RS
-
-.nf
-docker images \-\-viz | dot \-Tpng \-o docker.png
 
 .fi
 .SH Listing only the shortened image IDs

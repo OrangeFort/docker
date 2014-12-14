@@ -68,7 +68,7 @@ unix://[/path/to/socket] to use.
 
 .PP
 \fB\-\-icc\fP=\fItrue\fP|\fIfalse\fP
-  Enable inter\-container communication. Default is true.
+  Allow unrestricted inter\-container and Docker daemon host communication. If disabled, containers can still be linked together using \fB\-\-link\fP option (see \fBdocker\-run(1)\fP). Default is true.
 
 .PP
 \fB\-\-ip\fP=""
@@ -83,6 +83,14 @@ unix://[/path/to/socket] to use.
   Disable Docker's addition of iptables rules. Default is true.
 
 .PP
+\fB\-l\fP, \fB\-\-log\-level\fP="\fIdebug\fP|\fIinfo\fP|\fIerror\fP|\fIfatal\fP""
+  Set the logging level. Default is \fB\fCinfo\fR.
+
+.PP
+\fB\-\-label\fP="[]"
+  Set key=value labels to the daemon (displayed in \fB\fCdocker info\fR)
+
+.PP
 \fB\-\-mtu\fP=VALUE
   Set the containers network mtu. Default is \fB\fC1500\fR.
 
@@ -91,12 +99,16 @@ unix://[/path/to/socket] to use.
   Path to use for daemon PID file. Default is \fB\fC/var/run/docker.pid\fR
 
 .PP
-**\-\-registry\-mirror=://
+\fB\-\-registry\-mirror\fP=://
   Prepend a registry mirror to be used for image pulls. May be specified multiple times.
 
 .PP
 \fB\-s\fP=""
   Force the Docker runtime to use a specific storage driver.
+
+.PP
+\fB\-\-storage\-opt\fP=[]
+  Set storage driver options. See STORAGE DRIVER OPTIONS.
 
 .PP
 \fB\-v\fP=\fItrue\fP|\fIfalse\fP
@@ -256,10 +268,103 @@ inside it)
 \fBdocker\-wait(1)\fP
   Block until a container stops, then print its exit code
 
+.SH STORAGE DRIVER OPTIONS
+.PP
+Options to storage backend can be specified with \fB\-\-storage\-opt\fP flags. The
+only backend which currently takes options is \fIdevicemapper\fP. Therefore use these
+flags with \fB\-s=\fPdevicemapper.
+
+.PP
+Here is the list of \fIdevicemapper\fP options:
+.SS dm.basesize
+.PP
+Specifies the size to use when creating the base device, which limits the size
+of images and containers. The default value is 10G. Note, thin devices are
+inherently "sparse", so a 10G device which is mostly empty doesn't use 10 GB
+of space on the pool. However, the filesystem will use more space for the empty
+case the larger the device is. \fBWarning\fP: This value affects the system\-wide
+"base" empty filesystem that may already be initialized and inherited by pulled
+images.
+.SS dm.loopdatasize
+.PP
+Specifies the size to use when creating the loopback file for the "data"
+device which is used for the thin pool. The default size is 100G. Note that the
+file is sparse, so it will not initially take up this much space.
+.SS dm.loopmetadatasize
+.PP
+Specifies the size to use when creating the loopback file for the "metadadata"
+device which is used for the thin pool. The default size is 2G. Note that the
+file is sparse, so it will not initially take up this much space.
+.SS dm.fs
+.PP
+Specifies the filesystem type to use for the base device. The supported
+options are "ext4" and "xfs". The default is "ext4"
+.SS dm.mkfsarg
+.PP
+Specifies extra mkfs arguments to be used when creating the base device.
+.SS dm.mountopt
+.PP
+Specifies extra mount options used when mounting the thin devices.
+.SS dm.datadev
+.PP
+Specifies a custom blockdevice to use for data for the thin pool.
+
+.PP
+If using a block device for device mapper storage, ideally both datadev and
+metadatadev should be specified to completely avoid using the loopback device.
+.SS dm.metadatadev
+.PP
+Specifies a custom blockdevice to use for metadata for the thin pool.
+
+.PP
+For best performance the metadata should be on a different spindle than the
+data, or even better on an SSD.
+
+.PP
+If setting up a new metadata pool it is required to be valid. This can be
+achieved by zeroing the first 4k to indicate empty metadata, like this:
+
+.PP
+.RS
+
+.nf
+dd if=/dev/zero of=/dev/metadata\_dev bs=4096 count=1
+
+.fi
+.SS dm.blocksize
+.PP
+Specifies a custom blocksize to use for the thin pool. The default blocksize
+is 64K.
+.SS dm.blkdiscard
+.PP
+Enables or disables the use of blkdiscard when removing devicemapper devices.
+This is enabled by default (only) if using loopback devices and is required to
+res\-parsify the loopback file on image/container removal.
+
+.PP
+Disabling this on loopback can lead to \fImuch\fP faster container removal times,
+but will prevent the space used in \fB\fC/var/lib/docker\fR directory from being returned to
+the system for other use when containers are removed.
+
 .SH EXAMPLES
 .PP
-For specific examples please see the man page for the specific Docker command.
-For example:
+Launching docker daemon with \fIdevicemapper\fP backend with particular block devices
+for data and metadata:
+
+.PP
+.RS
+
+.nf
+docker \-d \-s=devicemapper \\
+  \-\-storage\-opt dm.datadev=/dev/vdb \\
+  \-\-storage\-opt dm.metadatadev=/dev/vdc \\
+  \-\-storage\-opt dm.basesize=20G
+
+.fi
+.SS Client
+.PP
+For specific client examples please see the man page for the specific Docker
+command. For example:
 
 .PP
 .RS
@@ -271,5 +376,4 @@ man docker run
 
 .SH HISTORY
 .PP
-April 2014, Originally compiled by William Henry (whenry at redhat dot com) based
- on docker.com source material and internal work.
+April 2014, Originally compiled by William Henry (whenry at redhat dot com) based on docker.com source material and internal work.

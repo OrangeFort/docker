@@ -1,4 +1,4 @@
-.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "SEPT 2014"  ""
+.TH "DOCKER" "1" " Docker User Manuals" "Docker Community" "JUNE 2014"  ""
 
 .SH NAME
 .PP
@@ -10,23 +10,38 @@ docker\-exec \- Run a command in a running container
 [\fB\-d\fP|\fB\-\-detach\fP[=\fIfalse\fP]]
 [\fB\-i\fP|\fB\-\-interactive\fP[=\fIfalse\fP]]
 [\fB\-t\fP|\fB\-\-tty\fP[=\fIfalse\fP]]
- CONTAINER COMMAND [ARG...]
+CONTAINER COMMAND [ARG...]
 
 .SH DESCRIPTION
 .PP
 Run a process in a running container.
 
-.SH Options
+.PP
+The command started using \fB\fCdocker exec\fR will only run while the container's primary
+process (\fB\fCPID 1\fR) is running, and will not be restarted if the container is restarted.
+
+.PP
+If the container is paused, then the \fB\fCdocker exec\fR command will wait until the
+container is unpaused, and then run
+
+.SH OPTIONS
 .PP
 \fB\-d\fP, \fB\-\-detach\fP=\fItrue\fP|\fIfalse\fP
-   Detached mode. This runs the new process in the background.
+   Detached mode: run command in the background. The default is \fIfalse\fP.
 
 .PP
 \fB\-i\fP, \fB\-\-interactive\fP=\fItrue\fP|\fIfalse\fP
-   When set to true, keep STDIN open even if not attached. The default is false.
+   Keep STDIN open even if not attached. The default is \fIfalse\fP.
 
 .PP
 \fB\-t\fP, \fB\-\-tty\fP=\fItrue\fP|\fIfalse\fP
-   When set to true Docker can allocate a pseudo\-tty and attach to the standard
-input of the process. This can be used, for example, to run a throwaway
-interactive shell. The default value is false.
+   Allocate a pseudo\-TTY. The default is \fIfalse\fP.
+
+.PP
+The \fB\-t\fP option is incompatible with a redirection of the docker client
+standard input.
+
+.SH HISTORY
+.PP
+November 2014, updated by Sven Dowideit 
+\[la]SvenDowideit@home.org.au\[ra]
