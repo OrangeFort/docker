@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.3 (2014-12-11)
+
+#### Security
+- Fix path traversal vulnerability in processing of absolute symbolic links (CVE-2014-9356)
+- Fix decompression of xz image archives, preventing privilege escalation (CVE-2014-9357)
+- Validate image IDs (CVE-2014-9358)
+
+#### Runtime
+- Fix an issue when image archives are being read slowly
+
+#### Client
+- Fix a regression related to stdin redirection
+- Fix a regression with `docker cp` when destination is the current directory
+
 ## 1.3.2 (2014-11-20)
 
 #### Security
@@ -32,7 +46,7 @@
 #### Builder
 - Fix escaping `$` for environment variables
 - Fix issue with lowercase `onbuild` Dockerfile instruction
-- Restrict environment variable expansion to `ENV`, `ADD`, `COPY`, `WORKDIR`, `EXPOSE`, `VOLUME` and `USER`
+- Restrict envrionment variable expansion to `ENV`, `ADD`, `COPY`, `WORKDIR`, `EXPOSE`, `VOLUME` and `USER`
 
 ## 1.3.0 (2014-10-14)
 
