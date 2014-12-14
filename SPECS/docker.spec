@@ -3,7 +3,7 @@
 
 Name:           docker
 Version:        1.3.3
-Release:        1%{?repo}%{?dist}
+Release:        2%{?repo}%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
 Group:          System Environment/Daemons
@@ -131,6 +131,7 @@ install -p %{SOURCE0} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 # install manpages
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
+install -p -m 644 %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/man1/
 install -p -m 644 %{SOURCE10} $RPM_BUILD_ROOT%{_mandir}/man1/
 install -p -m 644 %{SOURCE11} $RPM_BUILD_ROOT%{_mandir}/man1/
 install -p -m 644 %{SOURCE12} $RPM_BUILD_ROOT%{_mandir}/man1/
@@ -243,6 +244,9 @@ exit 0
 
 
 %changelog
+* Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.3.3-2orangefort.el7
+- Restore missing manpage
+
 * Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.3.3-1orangefort.el7
 - Bump release to 1.3.3-1
 - Update 'CHANGELOG' for 1.3.3 release
