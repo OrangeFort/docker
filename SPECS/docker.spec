@@ -23,7 +23,6 @@ Requires(preun):  systemd
 Requires(postun): systemd
 
 Provides:  lxc-docker = %{version}
-Provides:  docker
 
 Source0:   https://get.docker.io/builds/Linux/x86_64/docker-%{version}
 Source1:   docker.service
@@ -126,8 +125,8 @@ This package contains the zsh completion files for Docker
 rm -rf $RPM_BUILD_ROOT
 
 # install binary
-install -d -m0755 $RPM_BUILD_ROOT%{_bindir}
-install -p %{SOURCE0} $RPM_BUILD_ROOT%{_bindir}/%{name}
+install -d -m 0755 $RPM_BUILD_ROOT%{_bindir}
+install -p -m 0755 %{SOURCE0} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 # install manpages
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
@@ -181,7 +180,7 @@ install -p -m 644 %{SOURCE7} $RPM_BUILD_ROOT%{_datadir}/zsh/site-functions/_%{na
 
 # install udev rules
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d
-install -p -m 755 %{SOURCE8} $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/80-%{name}.rules
+install -p -m 644 %{SOURCE8} $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/80-%{name}.rules
 
 # install storage dir
 install -d -m 700 $RPM_BUILD_ROOT%{_sharedstatedir}/docker
@@ -226,11 +225,12 @@ exit 0
 %defattr(-,root,root,-)
 %doc AUTHORS CHANGELOG.md CONTRIBUTING.md LICENSE MAINTAINERS NOTICE README.md
 %dir %{_sharedstatedir}/%{name}
+%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
+%config            %{_sysconfdir}/udev/rules.d/80-%{name}.rules
 %{_bindir}/%{name}
 %{_mandir}/man1/*
 %{_mandir}/man5/*
-%{_sysconfdir}/sysconfig/%{name}
-%{_sysconfdir}/udev/rules.d/80-%{name}.rules
+
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}.socket
 
@@ -244,38 +244,38 @@ exit 0
 
 
 %changelog
-* Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.4.0-1orangefort.el7
+* Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.4.0-1orangefort
 - Bump release to 1.4.0-1
 - Update 'CHANGELOG', 'README', et. al for 1.4.0 release
 
-* Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.3.3-2orangefort.el7
+* Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.3.3-2orangefort
 - Restore missing manpage
 
-* Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.3.3-1orangefort.el7
+* Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.3.3-1orangefort
 - Bump release to 1.3.3-1
 - Update 'CHANGELOG' for 1.3.3 release
 
-* Mon Nov 24 2014 Ryan McKern <ryan@orangefort.com> - 1.3.2-1orangefort.el7
+* Mon Nov 24 2014 Ryan McKern <ryan@orangefort.com> - 1.3.2-1orangefort
 - Bump release to 1.3.2-1
 - Update 'CHANGELOG' for 1.3.2 release
 
-* Sun Nov  2 2014 Ryan McKern <ryan@orangefort.com> - 1.3.1-2orangefort.el7
+* Sun Nov  2 2014 Ryan McKern <ryan@orangefort.com> - 1.3.1-2orangefort
 - Bump release to 1.3.1-2
 - Update 'CHANGELOG' for 1.3.1 release
 
-* Sun Nov  2 2014 Ryan McKern <ryan@orangefort.com> - 1.3.1-1orangefort.el7
+* Sun Nov  2 2014 Ryan McKern <ryan@orangefort.com> - 1.3.1-1orangefort
 - Bump version to 1.3.1
 - Add BuildRequires for SystemD to ensure that RPM macros are populated
 
-* Thu Oct 16 2014 Ryan McKern <ryan@orangefort.com> - 1.3.0-1orangefort.el7
+* Thu Oct 16 2014 Ryan McKern <ryan@orangefort.com> - 1.3.0-1orangefort
 - Bump version to 1.3.0
 
-* Sun Sep 14 2014 Ryan McKern <ryan@orangefort.com> - 1.2.0-3orangefort.el7
+* Sun Sep 14 2014 Ryan McKern <ryan@orangefort.com> - 1.2.0-3orangefort
 - Fix errant provides
 - Replace buildroot macro with RPM_BUILD_ROOT variable
 
-* Sun Sep 14 2014 Ryan McKern <ryan@orangefort.com> - 1.2.0-2orangefort.el7
+* Sun Sep 14 2014 Ryan McKern <ryan@orangefort.com> - 1.2.0-2orangefort
 - Split bash & zsh completion into seperate packages
 
-* Sun Sep 14 2014 Ryan McKern <ryan@orangefort.com> - 1.2.0-1orangefort.el7
+* Sun Sep 14 2014 Ryan McKern <ryan@orangefort.com> - 1.2.0-1orangefort
 - Initial packaging of Docker binary and a million man pages
