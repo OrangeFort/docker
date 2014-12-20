@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:           docker
-Version:        1.4.0
+Version:        1.4.1
 Release:        1%{?repo}%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
@@ -244,6 +244,9 @@ exit 0
 
 
 %changelog
+* Fri Dec 19 2014 Ryan McKern <ryan@orangefort.com> - 1.4.1-1orangefort
+- Bump release to 1.4.1-1
+
 * Sat Dec 13 2014 Ryan McKern <ryan@orangefort.com> - 1.4.0-1orangefort
 - Bump release to 1.4.0-1
 - Update 'CHANGELOG', 'README', et. al for 1.4.0 release
